@@ -1,6 +1,6 @@
 # Style Sensei - Flutter/Firebase Project
 
-iperfect mo po kami sir Jess <> HCI Final Proj
+for Gess Jarcia <> HCI Final Proj
 
 ## Members
 
@@ -12,4 +12,4 @@ iperfect mo po kami sir Jess <> HCI Final Proj
 ## Note
 
 - Project in progress.
-- `.apk` file in `Releases` section.
+- `.apk` file in the `Releases` section.
