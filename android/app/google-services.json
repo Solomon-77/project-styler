@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "730537478282",
+    "project_id": "style-sensei-1",
+    "storage_bucket": "style-sensei-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730537478282:android:d6d985bf05a2cf10140573",
+        "android_client_info": {
+          "package_name": "com.example.style_sensei"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiscOTl4CjVg-h9FydBYDGhAgd1ZQwe1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
