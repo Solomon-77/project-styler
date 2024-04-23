@@ -18,19 +18,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Style Sensei',
       debugShowCheckedModeBanner: false,
       home: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          if (snapshot.hasData) { 
-            return const Nav(); // User is logged in, navigate to the Nav screen
+            return const CircularProgressIndicator();
+          } else if (snapshot.hasData) {
+            return const Nav(); // Show the main app if the user is logged in
           } else {
-            return const SplashScreen(); // User is not logged in, navigate to the Login screen
+            return const SplashScreen(); // Show the login screen if the user is logged out
           }
         },
       ),

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:style_sensei/nav.dart';
 import 'package:style_sensei/signup.dart';
+import 'package:style_sensei/main.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -60,8 +61,12 @@ class _LoginState extends State<Login> {
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () =>
-              Navigator.popUntil(context, (route) => route.isFirst),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const SplashScreen()),
+            );
+          }
         ),
       ),
       body: SingleChildScrollView(
