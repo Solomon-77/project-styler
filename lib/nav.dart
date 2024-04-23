@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:style_sensei/bottom_nav/home.dart';
 import 'package:style_sensei/bottom_nav/browse.dart';
 import 'package:style_sensei/bottom_nav/profile.dart';
+import 'package:style_sensei/login.dart';
 
 class Nav extends StatefulWidget {
   const Nav({super.key});
@@ -141,7 +142,10 @@ class _NavState extends State<Nav> {
                 ),
                 onTap: () {
                   _auth.signOut();
-                  Navigator.popUntil(context, (route) => route.isFirst);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Login()),
+                  );
                 },
               ),
             ],
