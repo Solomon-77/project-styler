@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:style_sensei/bottom_nav/home.dart';
@@ -16,16 +17,38 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   final _auth = FirebaseAuth.instance;
   late String _username;
+  String? _profileImageUrl;
 
   @override
   void initState() {
     super.initState();
     _getCurrentUser();
+    _subscribeToAuthChanges();
   }
 
-  void _getCurrentUser() {
-    final user = _auth.currentUser;
-    _username = user?.displayName ?? '';
+  void _getCurrentUser() async {
+  final user = _auth.currentUser;
+  if (user != null) {
+    // Fetch profile image URL if exists
+    final storageRef = FirebaseStorage.instance.ref().child('profile_images/${user.uid}');
+    try {
+      final downloadUrl = await storageRef.getDownloadURL();
+      setState(() {
+        _profileImageUrl = downloadUrl;
+      });
+    } catch (e) {
+      print('Error fetching profile image: $e');
+    }
+  }
+}
+
+
+  void _subscribeToAuthChanges() {
+    _auth.authStateChanges().listen((user) {
+      setState(() {
+        _username = user?.displayName ?? '';
+      });
+    });
   }
 
   int _currentIndex = 0;
@@ -71,10 +94,15 @@ class _NavState extends State<Nav> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // must be firebase profile picture
-                      const CircleAvatar(
-                        radius: 40,
-                        child: Icon(Icons.person, size: 60),
-                      ),
+                      _profileImageUrl != null
+                        ? CircleAvatar(
+                            radius: 40,
+                            backgroundImage: NetworkImage(_profileImageUrl!),
+                          )
+                        : const CircleAvatar(
+                            radius: 40,
+                            child: Icon(Icons.person, size: 60), // Placeholder icon
+                          ),
                       const SizedBox(height: 15),
                       Text(
                         _username.isNotEmpty ? _username : 'Guest',
