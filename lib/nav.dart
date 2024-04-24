@@ -70,6 +70,7 @@ class _NavState extends State<Nav> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      // must be firebase profile picture
                       const CircleAvatar(
                         radius: 40,
                         child: Icon(Icons.person, size: 60),
