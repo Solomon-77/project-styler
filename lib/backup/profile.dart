@@ -4,8 +4,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:style_sensei/nav.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:style_sensei/bottom_nav/profile_manager.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -16,23 +14,33 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   final _auth = FirebaseAuth.instance;
-  late String _username = '';
-  final _userProfileManager = UserProfileManager();
+  String _username = FirebaseAuth.instance.currentUser?.displayName ?? '';
+  String? _profileImageUrl;
 
   @override
   void initState() {
     super.initState();
     _getCurrentUser();
-    _loadProfileData();
   }
 
-  void _getCurrentUser() {
-    _username = _auth.currentUser?.displayName ?? '';
-  }
+  void _getCurrentUser() async {
+  final user = _auth.currentUser;
+    if (user != null) {
+      // Fetch profile image URL if exists
+      final storageRef = FirebaseStorage.instance.ref().child('profile_images/${user.uid}');
+      try {
+        final downloadUrl = await storageRef.getDownloadURL();
+        setState(() {
+          _profileImageUrl = downloadUrl;
+        });
+      } catch (e) {
+        print('Error fetching profile image: $e');
+      }
 
-  Future<void> _loadProfileData() async {
-    await _userProfileManager.loadProfileData();
-    if (mounted) setState(() {});
+      setState(() {
+        _username = user.displayName ?? '';
+      });
+    }
   }
 
   Future<void> _pickImage(ImageSource source) async {
@@ -46,20 +54,15 @@ class _ProfileState extends State<Profile> {
     final user = _auth.currentUser;
     if (user == null) return;
 
-    try {
-      final storageRef = FirebaseStorage.instance.ref().child('profile_images/${user.uid}');
-      final uploadTask = storageRef.putFile(image);
-      final snapshot = await uploadTask.whenComplete(() {});
-      final downloadUrl = await snapshot.ref.getDownloadURL();
+    final storageRef =
+        FirebaseStorage.instance.ref().child('profile_images/${user.uid}');
+    final uploadTask = storageRef.putFile(image);
+    final snapshot = await uploadTask.whenComplete(() {});
+    final downloadUrl = await snapshot.ref.getDownloadURL();
 
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('profile_image_url_${user.uid}', downloadUrl);
-
-      if (mounted) {
-        _userProfileManager.updateProfileImageUrl(downloadUrl);
-        setState(() {});
-      }
-    } catch (_) {}
+    setState(() {
+      _profileImageUrl = downloadUrl;
+    });
   }
 
   Future<void> _changeUsername() async {
@@ -68,17 +71,25 @@ class _ProfileState extends State<Profile> {
 
     final newUsername = await showDialog<String>(
       context: context,
-      builder: (context) {
+      builder: (BuildContext context) {
         final controller = TextEditingController(text: _username);
         return AlertDialog(
           title: const Text('Change Username'),
           content: TextField(
             controller: controller,
-            decoration: const InputDecoration(hintText: 'Enter new username'),
+            decoration: const InputDecoration(
+              hintText: 'Enter new username',
+            ),
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-            TextButton(onPressed: () => Navigator.pop(context, controller.text), child: const Text('OK')),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, controller.text),
+              child: const Text('OK'),
+            ),
           ],
         );
       },
@@ -86,13 +97,14 @@ class _ProfileState extends State<Profile> {
 
     if (newUsername != null && newUsername.isNotEmpty) {
       await user.updateDisplayName(newUsername);
-      if (mounted) setState(() => _username = newUsername);
+      setState(() {
+        _username = newUsername;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final profileImageUrl = _userProfileManager.profileImageUrl;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -100,7 +112,13 @@ class _ProfileState extends State<Profile> {
           children: [
             const SizedBox(height: 20),
             const Center(
-              child: Text('Profile', style: TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.w800)),
+              child: Text(
+                "Profile",
+                style: TextStyle(
+                  fontFamily: "Montserrat",
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
             ),
             const SizedBox(height: 20),
             Container(
@@ -120,13 +138,13 @@ class _ProfileState extends State<Profile> {
                           CircleAvatar(
                             radius: 60,
                             backgroundColor: Colors.grey[300],
-                            child: profileImageUrl == null
+                            child: _profileImageUrl == null
                                 ? const Icon(Icons.person, size: 60)
                                 : ClipOval(
                                     child: Image.network(
-                                      profileImageUrl,
+                                      _profileImageUrl!,
                                       fit: BoxFit.cover,
-                                      width: 120,
+                                      width: 120, // width and height should be double of radius
                                       height: 120,
                                     ),
                                   ),
@@ -177,7 +195,7 @@ class _ProfileState extends State<Profile> {
                       style: TextStyle(
                         fontFamily: "Montserrat",
                         fontWeight: FontWeight.w800,
-                        fontSize: 13,
+                        fontSize: 13
                       ),
                     ),
                     Row(
@@ -186,7 +204,7 @@ class _ProfileState extends State<Profile> {
                           _username,
                           style: const TextStyle(
                             fontFamily: "Montserrat",
-                            fontSize: 12,
+                            fontSize: 12
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -206,14 +224,14 @@ class _ProfileState extends State<Profile> {
                       style: TextStyle(
                         fontFamily: "Montserrat",
                         fontWeight: FontWeight.w800,
-                        fontSize: 13,
+                        fontSize: 13
                       ),
                     ),
                     Text(
                       _auth.currentUser?.email ?? '',
                       style: const TextStyle(
                         fontFamily: "Montserrat",
-                        fontSize: 13,
+                        fontSize: 13
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -251,7 +269,7 @@ class _ProfileState extends State<Profile> {
             )
           ],
         ),
-      ),
+      )
     );
   }
 }
