@@ -37,7 +37,7 @@ class Browse extends StatelessWidget {
                               topRight: Radius.circular(10)
                             ),
                             child: Image.asset(
-                              "images/bohemian.jpg",
+                              "images/casual.jpg",
                               fit: BoxFit.cover,
                               width: double.infinity,
                             ),
@@ -45,7 +45,37 @@ class Browse extends StatelessWidget {
                           const Padding(
                             padding: EdgeInsets.all(10.0),
                             child: Text(
-                              "Bohemian Style",
+                              "Casual",
+                              style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 17
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Card(
+                      elevation: 3,
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10)
+                            ),
+                            child: Image.asset(
+                              "images/formal.jpg",
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Text(
+                              "Formal",
                               style: TextStyle(
                                 fontFamily: "Montserrat",
                                 fontSize: 17
@@ -75,37 +105,7 @@ class Browse extends StatelessWidget {
                           const Padding(
                             padding: EdgeInsets.all(10.0),
                             child: Text(
-                              "Casual Style",
-                              style: TextStyle(
-                                fontFamily: "Montserrat",
-                                fontSize: 17
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Card(
-                      elevation: 3,
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10)
-                            ),
-                            child: Image.asset(
-                              "images/bohemian.jpg",
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Text(
-                              "Bohemian Style",
+                              "Bohemian",
                               style: TextStyle(
                                 fontFamily: "Montserrat",
                                 fontSize: 17
