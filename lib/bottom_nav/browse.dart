@@ -4,6 +4,15 @@ import 'package:flutter/material.dart';
 class Browse extends StatelessWidget {
   const Browse({super.key});
 
+  static const List<Map<String, String>> cardData = [
+    {"title": "Casual", "imagePath": "images/casual.jpg"},
+    {"title": "Formal", "imagePath": "images/formal.jpg"},
+    {"title": "Bohemian", "imagePath": "images/bohemian.jpg"},
+    {"title": "Vintage", "imagePath": "images/vintage.jpg"},
+    {"title": "Classic", "imagePath": "images/classic.jpg"},
+    {"title": "Artsy", "imagePath": "images/artsy.jpg"},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,103 +33,67 @@ class Browse extends StatelessWidget {
               const CupertinoSearchTextField(),
               const SizedBox(height: 20),
               Expanded(
-                child: ListView( // Wrap the cards with a ListView
-                  children: [
-                    Card(
-                      elevation: 3,
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10)
-                            ),
-                            child: Image.asset(
-                              "images/casual.jpg",
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                            ),
+                child: ListView(
+                  children: cardData
+                      .map(
+                        (card) => Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: CustomCard(
+                            title: card["title"]!,
+                            imagePath: card["imagePath"]!,
                           ),
-                          const Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Text(
-                              "Casual",
-                              style: TextStyle(
-                                fontFamily: "Montserrat",
-                                fontSize: 17
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Card(
-                      elevation: 3,
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10)
-                            ),
-                            child: Image.asset(
-                              "images/formal.jpg",
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Text(
-                              "Formal",
-                              style: TextStyle(
-                                fontFamily: "Montserrat",
-                                fontSize: 17
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Card(
-                      elevation: 3,
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10)
-                            ),
-                            child: Image.asset(
-                              "images/bohemian.jpg",
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Text(
-                              "Bohemian",
-                              style: TextStyle(
-                                fontFamily: "Montserrat",
-                                fontSize: 17
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CustomCard extends StatelessWidget {
+  final String title;
+  final String imagePath;
+
+  const CustomCard({
+    super.key,
+    required this.title,
+    required this.imagePath,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 3,
+      color: Colors.white,
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+              width: double.infinity,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontFamily: "Montserrat",
+                fontSize: 17,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
