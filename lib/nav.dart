@@ -6,6 +6,8 @@ import 'package:style_sensei/bottom_nav/profile.dart';
 import 'package:style_sensei/login.dart';
 import 'package:style_sensei/bottom_nav/profile_manager.dart';
 
+import 'package:style_sensei/side_nav/favorites.dart';
+
 class Nav extends StatefulWidget {
   const Nav({super.key});
 
@@ -122,7 +124,9 @@ class _NavState extends State<Nav> {
                   leading: const Icon(Icons.favorite),
                   title: const Text('Favorites',
                       style: TextStyle(fontFamily: 'Montserrat')),
-                  onTap: () {}),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Favorite()));
+                  }),
               ListTile(
                   leading: const Icon(Icons.info),
                   title: const Text('About',

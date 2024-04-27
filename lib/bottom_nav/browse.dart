@@ -1,10 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:style_sensei/browseStyles/casual.dart';
+import 'package:style_sensei/browseStyles/formal.dart';
+import 'package:style_sensei/browseStyles/bohemian.dart';
+import 'package:style_sensei/browseStyles/vintage.dart';
+import 'package:style_sensei/browseStyles/classic.dart';
+import 'package:style_sensei/browseStyles/artsy.dart';
+
 class Browse extends StatefulWidget {
   const Browse({super.key});
 
-  static const List<Map<String, String>> cardData = [
+  @override
+  State<Browse> createState() => _BrowseState();
+}
+
+class _BrowseState extends State<Browse> {
+  final List<Map<String, String>> cardData = [
     {"title": "Casual", "imagePath": "images/casual.jpg"},
     {"title": "Formal", "imagePath": "images/formal.jpg"},
     {"title": "Bohemian", "imagePath": "images/bohemian.jpg"},
@@ -13,12 +25,6 @@ class Browse extends StatefulWidget {
     {"title": "Artsy", "imagePath": "images/artsy.jpg"},
   ];
 
-  @override
-  State<Browse> createState() => _BrowseState();
-}
-
-class _BrowseState extends State<Browse> {
-  List<Map<String, String>> filteredCardData = Browse.cardData;
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -29,6 +35,12 @@ class _BrowseState extends State<Browse> {
 
   @override
   Widget build(BuildContext context) {
+    final filteredCards = cardData.where((card) {
+      final title = card['title']?.toLowerCase() ?? '';
+      final query = _searchController.text.toLowerCase();
+      return title.contains(query);
+    }).toList();
+
     return Scaffold(
       body: Center(
         child: Padding(
@@ -48,37 +60,63 @@ class _BrowseState extends State<Browse> {
               CupertinoSearchTextField(
                 controller: _searchController,
                 onChanged: (value) {
-                  setState(() {
-                    filteredCardData = Browse.cardData
-                        .where((card) =>
-                            card["title"]!.toLowerCase().contains(value.toLowerCase()))
-                        .toList();
-                  });
+                  setState(() {});
                 },
               ),
               const SizedBox(height: 20),
               Expanded(
-                child: filteredCardData.isNotEmpty
+                child: filteredCards.isNotEmpty
                     ? ListView(
-                        children: filteredCardData
+                        children: filteredCards
+                            .asMap()
+                            .entries
                             .map(
-                              (card) => Padding(
-                                padding: const EdgeInsets.only(bottom: 20),
-                                child: CustomCard(
-                                  title: card["title"]!,
-                                  imagePath: card["imagePath"]!,
-                                ),
-                              ),
+                              (entry) {
+                                final index = entry.key;
+                                final card = entry.value;
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 20),
+                                  child: CustomCard(
+                                    title: card["title"]!,
+                                    imagePath: card["imagePath"]!,
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            switch (index) {
+                                              case 0:
+                                                return const Casual();
+                                              case 1:
+                                                return const Formal();
+                                              case 2:
+                                                return const Bohemian();
+                                              case 3:
+                                                return const Vintage();
+                                              case 4:
+                                                return const Classic();
+                                              case 5:
+                                                return const Artsy();
+                                              default:
+                                                return const Casual();
+                                            }
+                                          },
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                );
+                              },
                             )
                             .toList(),
                       )
                     : const Center(
                         child: Text(
-                          "Not found",
+                          "Not Found",
                           style: TextStyle(
                             fontFamily: "Montserrat",
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500
                           ),
                         ),
                       ),
@@ -94,11 +132,13 @@ class _BrowseState extends State<Browse> {
 class CustomCard extends StatelessWidget {
   final String title;
   final String imagePath;
+  final VoidCallback onTap;
 
   const CustomCard({
     super.key,
     required this.title,
     required this.imagePath,
+    required this.onTap,
   });
 
   @override
@@ -106,40 +146,43 @@ class CustomCard extends StatelessWidget {
     return Card(
       elevation: 3,
       color: Colors.white,
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
+      child: InkWell(
+        onTap: onTap,
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
             ),
-            child: Image.asset(
-              imagePath,
-              fit: BoxFit.cover,
-              width: double.infinity,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontFamily: "Montserrat",
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontFamily: "Montserrat",
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-                const Icon(
-                  Icons.arrow_forward_ios,
-                  size: 15,
-                )
-              ],
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
