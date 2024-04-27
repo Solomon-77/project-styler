@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Browse extends StatelessWidget {
+class Browse extends StatefulWidget {
   const Browse({super.key});
 
   static const List<Map<String, String>> cardData = [
@@ -12,6 +12,20 @@ class Browse extends StatelessWidget {
     {"title": "Classic", "imagePath": "images/classic.jpg"},
     {"title": "Artsy", "imagePath": "images/artsy.jpg"},
   ];
+
+  @override
+  State<Browse> createState() => _BrowseState();
+}
+
+class _BrowseState extends State<Browse> {
+  List<Map<String, String>> filteredCardData = Browse.cardData;
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,27 +39,49 @@ class Browse extends StatelessWidget {
               const Text(
                 "Fashion Styles",
                 style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: "Montserrat"),
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: "Montserrat",
+                ),
               ),
               const SizedBox(height: 20),
-              const CupertinoSearchTextField(),
+              CupertinoSearchTextField(
+                controller: _searchController,
+                onChanged: (value) {
+                  setState(() {
+                    filteredCardData = Browse.cardData
+                        .where((card) =>
+                            card["title"]!.toLowerCase().contains(value.toLowerCase()))
+                        .toList();
+                  });
+                },
+              ),
               const SizedBox(height: 20),
               Expanded(
-                child: ListView(
-                  children: cardData
-                      .map(
-                        (card) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: CustomCard(
-                            title: card["title"]!,
-                            imagePath: card["imagePath"]!,
+                child: filteredCardData.isNotEmpty
+                    ? ListView(
+                        children: filteredCardData
+                            .map(
+                              (card) => Padding(
+                                padding: const EdgeInsets.only(bottom: 20),
+                                child: CustomCard(
+                                  title: card["title"]!,
+                                  imagePath: card["imagePath"]!,
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      )
+                    : const Center(
+                        child: Text(
+                          "Not found",
+                          style: TextStyle(
+                            fontFamily: "Montserrat",
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                      )
-                      .toList(),
-                ),
+                      ),
               ),
             ],
           ),
@@ -84,13 +120,23 @@ class CustomCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontFamily: "Montserrat",
-                fontSize: 17,
-              ),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontFamily: "Montserrat",
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 15,
+                )
+              ],
             ),
           ),
         ],
