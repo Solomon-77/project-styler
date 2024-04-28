@@ -6,6 +6,7 @@ import 'package:style_sensei/bottom_nav/profile.dart';
 import 'package:style_sensei/login.dart';
 import 'package:style_sensei/bottom_nav/profile_manager.dart';
 import 'package:style_sensei/side_nav/favorites.dart';
+import 'package:style_sensei/side_nav/about.dart';
 
 class Nav extends StatefulWidget {
   const Nav({super.key});
@@ -117,11 +118,12 @@ class _NavState extends State<Nav> {
                             ],
                           ),
                         ),
+                        const SizedBox(height: 1),
                         Text(
                           _auth.currentUser?.email ?? '',
                           style: const TextStyle(
                             fontFamily: 'Montserrat',
-                            fontSize: 13,
+                            fontSize: 11,
                             color: Colors.white,
                             shadows: [
                               Shadow(
@@ -190,7 +192,14 @@ class _NavState extends State<Nav> {
                   style: TextStyle(
                       fontFamily: 'Montserrat', fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const About(),
+                    ),
+                  );
+                },
               ),
               ListTile(
                 leading: const Padding(
