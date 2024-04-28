@@ -5,7 +5,6 @@ import 'package:style_sensei/bottom_nav/browse.dart';
 import 'package:style_sensei/bottom_nav/profile.dart';
 import 'package:style_sensei/login.dart';
 import 'package:style_sensei/bottom_nav/profile_manager.dart';
-
 import 'package:style_sensei/side_nav/favorites.dart';
 
 class Nav extends StatefulWidget {
@@ -58,11 +57,14 @@ class _NavState extends State<Nav> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Style Sensei',
-            style: TextStyle(
-                fontFamily: 'Montserrat',
-                fontWeight: FontWeight.w500,
-                fontSize: 20)),
+        title: const Text(
+          'Style Sensei',
+          style: TextStyle(
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.w500,
+            fontSize: 20,
+          ),
+        ),
       ),
       drawer: SizedBox(
         width: 250,
@@ -70,76 +72,148 @@ class _NavState extends State<Nav> {
           child: ListView(
             children: [
               SizedBox(
-                height: 200,
-                child: DrawerHeader(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Color.fromARGB(255, 31, 31, 31),
-                      Color.fromARGB(255, 110, 110, 110)
-                    ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _profileImageUrl != null
-                          ? CircleAvatar(
-                              radius: 40,
-                              backgroundImage: NetworkImage(_profileImageUrl!))
-                          : const CircleAvatar(
-                              radius: 40, child: Icon(Icons.person, size: 60)),
-                      const SizedBox(height: 15),
-                      Text(_username.isNotEmpty ? _username : 'Guest',
+                child: Padding(
+                  padding: const EdgeInsets.all(23.0),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 22),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      gradient: const LinearGradient(
+                        colors: [
+                          Color.fromARGB(255, 31, 31, 31),
+                          Color.fromARGB(255, 110, 110, 110)
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _profileImageUrl != null
+                            ? CircleAvatar(
+                                radius: 40,
+                                backgroundImage:
+                                    NetworkImage(_profileImageUrl!),
+                              )
+                            : const CircleAvatar(
+                                radius: 40,
+                                child: Icon(Icons.person, size: 60),
+                              ),
+                        const SizedBox(height: 15),
+                        Text(
+                          _username.isNotEmpty ? _username : 'Guest',
                           style: const TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontSize: 21,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                              shadows: [
-                                Shadow(
-                                    color: Colors.black,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 1)
-                              ])),
-                      Text(_auth.currentUser?.email ?? '',
+                            fontFamily: 'Montserrat',
+                            fontSize: 21,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                            shadows: [
+                              Shadow(
+                                color: Colors.black,
+                                offset: Offset(0, 0),
+                                blurRadius: 1,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          _auth.currentUser?.email ?? '',
                           style: const TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontSize: 13,
-                              color: Colors.white,
-                              shadows: [
-                                Shadow(
-                                    color: Colors.black,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 1)
-                              ])),
-                    ],
+                            fontFamily: 'Montserrat',
+                            fontSize: 13,
+                            color: Colors.white,
+                            shadows: [
+                              Shadow(
+                                color: Colors.black,
+                                offset: Offset(0, 0),
+                                blurRadius: 1,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
               ListTile(
-                  leading: const Icon(Icons.folder),
-                  title: const Text('Results',
-                      style: TextStyle(fontFamily: 'Montserrat')),
-                  onTap: () {}),
+                leading: const Padding(
+                  padding:
+                      EdgeInsets.only(left: 10.0), // Adjust the value as needed
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                  ),
+                ),
+                title: const Text(
+                  'Results',
+                  style: TextStyle(
+                      fontFamily: 'Montserrat', fontWeight: FontWeight.w500),
+                ),
+                onTap: () {},
+              ),
               ListTile(
-                  leading: const Icon(Icons.favorite),
-                  title: const Text('Favorites',
-                      style: TextStyle(fontFamily: 'Montserrat')),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Favorite()));
-                  }),
+                leading: const Padding(
+                  padding:
+                      EdgeInsets.only(left: 10.0), // Adjust the value as needed
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                  ),
+                ),
+                title: const Text(
+                  'Favorites',
+                  style: TextStyle(
+                      fontFamily: 'Montserrat', fontWeight: FontWeight.w500),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Favorite(),
+                    ),
+                  );
+                },
+              ),
               ListTile(
-                  leading: const Icon(Icons.info),
-                  title: const Text('About',
-                      style: TextStyle(fontFamily: 'Montserrat')),
-                  onTap: () {}),
+                leading: const Padding(
+                  padding:
+                      EdgeInsets.only(left: 10.0), // Adjust the value as needed
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                  ),
+                ),
+                title: const Text(
+                  'About',
+                  style: TextStyle(
+                      fontFamily: 'Montserrat', fontWeight: FontWeight.w500),
+                ),
+                onTap: () {},
+              ),
               ListTile(
-                leading: const Icon(Icons.logout),
-                title: const Text('Logout',
-                    style: TextStyle(fontFamily: 'Montserrat')),
+                leading: const Padding(
+                  padding:
+                      EdgeInsets.only(left: 10.0), // Adjust the value as needed
+                  child: Icon(
+                    Icons.logout,
+                    size: 18,
+                  ),
+                ),
+                title: const Text(
+                  'Logout',
+                  style: TextStyle(
+                      fontFamily: 'Montserrat', fontWeight: FontWeight.w500),
+                ),
                 onTap: () {
                   _auth.signOut();
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const Login()));
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Login(),
+                    ),
+                  );
                 },
               ),
             ],
@@ -157,10 +231,18 @@ class _NavState extends State<Nav> {
             selectedItemColor: Colors.white,
             currentIndex: _currentIndex,
             items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-              BottomNavigationBarItem(icon: Icon(Icons.style), label: 'Browse'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person), label: 'Profile'),
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.style),
+                label: 'Browse',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: 'Profile',
+              ),
             ],
             onTap: (index) => setState(() => _currentIndex = index),
           ),

@@ -16,14 +16,18 @@ class UserProfileManager {
     final user = _auth.currentUser;
     if (user != null) {
       final prefs = await SharedPreferences.getInstance();
-      _profileImageUrl = prefs.getString('profile_image_url_${user.uid}') ?? await _fetchProfileImageUrl(user.uid);
+      _profileImageUrl = prefs.getString('profile_image_url_${user.uid}') ??
+          await _fetchProfileImageUrl(user.uid);
     }
   }
 
   Future<String?> _fetchProfileImageUrl(String uid) async {
     try {
-      return await FirebaseStorage.instance.ref().child('profile_images/$uid').getDownloadURL();
-    } catch (_) {
+      final ref = FirebaseStorage.instance.ref().child('profile_images/$uid');
+      final downloadUrl = await ref.getDownloadURL();
+      return downloadUrl;
+    } catch (e) {
+      print('Error fetching profile image URL: $e');
       return null;
     }
   }

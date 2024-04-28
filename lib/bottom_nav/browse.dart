@@ -72,7 +72,6 @@ class _BrowseState extends State<Browse> {
                             .entries
                             .map(
                               (entry) {
-                                final index = entry.key;
                                 final card = entry.value;
                                 return Padding(
                                   padding: const EdgeInsets.only(bottom: 20),
@@ -84,21 +83,20 @@ class _BrowseState extends State<Browse> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) {
-                                            switch (index) {
-                                              case 0:
-                                                return const Casual();
-                                              case 1:
-                                                return const Formal();
-                                              case 2:
-                                                return const Bohemian();
-                                              case 3:
-                                                return const Vintage();
-                                              case 4:
-                                                return const Classic();
-                                              case 5:
-                                                return const Artsy();
-                                              default:
-                                                return const Casual();
+                                            if (card["title"]!.toLowerCase() == "casual") {
+                                              return const Casual();
+                                            } else if (card["title"]!.toLowerCase() == "formal") {
+                                              return const Formal();
+                                            } else if (card["title"]!.toLowerCase() == "bohemian") {
+                                              return const Bohemian();
+                                            } else if (card["title"]!.toLowerCase() == "vintage") {
+                                              return const Vintage();
+                                            } else if (card["title"]!.toLowerCase() == "classic") {
+                                              return const Classic();
+                                            } else if (card["title"]!.toLowerCase() == "artsy") {
+                                              return const Artsy();
+                                            } else {
+                                              return const Casual();
                                             }
                                           },
                                         ),
@@ -116,7 +114,7 @@ class _BrowseState extends State<Browse> {
                           style: TextStyle(
                             fontFamily: "Montserrat",
                             fontSize: 15,
-                            fontWeight: FontWeight.w500
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
