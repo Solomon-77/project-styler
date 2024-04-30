@@ -37,6 +37,8 @@ class _ClassicState extends State<Classic> {
   Widget build(BuildContext context) {
     final classicImageUrls = [
       "https://images.pexels.com/photos/7538098/pexels-photo-7538098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/3422138/pexels-photo-3422138.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/6693215/pexels-photo-6693215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       // Add more image URLs here
     ];
 
