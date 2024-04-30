@@ -37,6 +37,7 @@ class _BohemianState extends State<Bohemian> {
   Widget build(BuildContext context) {
     final bohemianImageUrls = [
       "https://images.pexels.com/photos/7576576/pexels-photo-7576576.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/19834972/pexels-photo-19834972/free-photo-of-black-woman-in-traditional-robe-posing-near-fence.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       // Add more image URLs here
     ];
 
@@ -72,7 +73,8 @@ class _BohemianState extends State<Bohemian> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -86,10 +88,14 @@ class _BohemianState extends State<Bohemian> {
                         IconButton(
                           icon: Icon(
                             Icons.favorite,
-                            color: _favoritesService.favorites.contains(imageUrl) ? Colors.red : null,
+                            color:
+                                _favoritesService.favorites.contains(imageUrl)
+                                    ? Colors.red
+                                    : null,
                           ),
                           onPressed: () {
-                            if (_favoritesService.favorites.contains(imageUrl)) {
+                            if (_favoritesService.favorites
+                                .contains(imageUrl)) {
                               _favoritesService.removeFromFavorites(imageUrl);
                             } else {
                               _favoritesService.addToFavorites(imageUrl);
