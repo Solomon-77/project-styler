@@ -7,6 +7,7 @@ import 'package:style_sensei/login.dart';
 import 'package:style_sensei/bottom_nav/profile_manager.dart';
 import 'package:style_sensei/side_nav/favorites.dart';
 import 'package:style_sensei/side_nav/about.dart';
+import 'package:style_sensei/side_nav/result.dart';
 
 class Nav extends StatefulWidget {
   const Nav({super.key});
@@ -153,7 +154,14 @@ class _NavState extends State<Nav> {
                   style: TextStyle(
                       fontFamily: 'Montserrat', fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Results(),
+                    ),
+                  );
+                },
               ),
               ListTile(
                 leading: const Padding(

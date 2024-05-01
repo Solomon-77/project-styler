@@ -33,7 +33,7 @@ class About extends StatelessWidget {
                 const SizedBox(height: 20),
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(25),
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 233, 233, 233),
                     borderRadius: BorderRadius.circular(20),
@@ -47,7 +47,12 @@ class About extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 15),
-                      Text("") // Add your app description here
+                      Text(
+                        "The Style Sensei app is a digital application that combines the functions of a personal stylist, wardrobe organizer, and shopping assistant. Its core purpose is to assist customers with wardrobe curation, fashion trend discovery, and the creation of occasion-appropriate outfits tailored to their unique preferences and body types. This innovative app sets itself apart by allowing users to fully customize clothing pieces that they wear repeatedly, ensuring a perfect fit and alignment with their individual style.",
+                        style: TextStyle(
+                          fontFamily: "Montserrat"
+                        ),
+                      ) // Add your app description here
                     ],
                   ),
                 ),
@@ -62,7 +67,7 @@ class About extends StatelessWidget {
                   child: Column(
                     children: [
                       const Text(
-                        "Members",
+                        "Creators",
                         style: TextStyle(
                             fontFamily: "Montserrat",
                             fontWeight: FontWeight.bold),
