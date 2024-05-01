@@ -95,6 +95,7 @@ class HomeState extends State<Home> {
               ),
               child: Column(
                 children: [
+                  const SizedBox(height: 9),
                   const Text(
                     "Upcoming Features",
                     style: TextStyle(
@@ -146,7 +147,8 @@ class HomeState extends State<Home> {
                         ),
                       ),
                     ],
-                  )
+                  ),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),
