@@ -148,10 +148,16 @@ class CustomCard extends StatelessWidget {
         onTap: onTap,
         child: Column(
           children: [
-            Image.asset(
-              imagePath,
-              fit: BoxFit.cover,
-              width: double.infinity,
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -178,4 +184,4 @@ class CustomCard extends StatelessWidget {
       ),
     );
   }
-}
+} 

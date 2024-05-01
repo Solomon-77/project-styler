@@ -11,9 +11,10 @@ class Home extends StatefulWidget {
 
 class HomeState extends State<Home> {
   static const List<String> imageAssets = [
-    'images/trend1.jpg',
+    'images/trend1.jpg', // Replace with your image file names
     'images/trend2.jpg',
     'images/trend3.jpg',
+    // Add more image asset paths here
   ];
 
   int _currentIndex = 0;
@@ -87,7 +88,7 @@ class HomeState extends State<Home> {
                 ),
               ),
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 30),
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
@@ -152,7 +153,7 @@ class HomeState extends State<Home> {
                 ],
               ),
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 30),
             const Text(
               "Style Suggester Quiz",
               style: TextStyle(
@@ -191,4 +192,4 @@ class HomeState extends State<Home> {
       ),
     );
   }
-}
+} 
