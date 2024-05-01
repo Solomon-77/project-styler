@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:style_sensei/quiz.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,9 +11,10 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
-  static const List<String> imageUrls = [
-    'https://images.pexels.com/photos/5325582/pexels-photo-5325582.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/3811977/pexels-photo-3811977.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  static const List<String> imageAssets = [
+    'images/trend1.jpg', // Replace with your image URLs
+    'images/trend2.jpg',
+    'images/trend3.jpg',
     // Add more image URLs here
   ];
 
@@ -56,13 +58,13 @@ class HomeState extends State<Home> {
                   });
                 },
               ),
-              items: imageUrls.map((url) {
+              items: imageAssets.map((asset) {
                 return Container(
                   margin: const EdgeInsets.all(6.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
                     image: DecorationImage(
-                      image: NetworkImage(url),
+                      image: CachedNetworkImageProvider(asset),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -73,7 +75,7 @@ class HomeState extends State<Home> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                imageUrls.length,
+                imageAssets.length,
                 (index) => Container(
                   width: 8.0,
                   height: 8.0,

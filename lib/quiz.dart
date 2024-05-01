@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -10,6 +12,7 @@ class Quiz extends StatefulWidget {
 class QuizState extends State<Quiz> {
   int _currentQuestion = 0;
   final List<int> _answers = [];
+  bool _quizCompleted = false; // Track if the quiz is completed
 
   static const List<String> _questions = [
     '1. What\'s your preferred everyday attire?',
@@ -111,18 +114,34 @@ class QuizState extends State<Quiz> {
       }
     }
 
+    final userStyle = _styles[maxIndex];
+
+    // Save the style result to Firestore
+    FirebaseFirestore.instance.collection('quizResults').add({
+      'userId': FirebaseAuth.instance.currentUser?.uid,
+      'style': userStyle,
+    });
+
+    setState(() {
+      _quizCompleted = true; // Set quiz as completed
+    });
+
     showDialog(
       context: context,
+      barrierDismissible: false, // Prevent dismissing the dialog by tapping outside
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Your Style'),
           content: Text(
-            'Based on your answers, your preferred style is ${_styles[maxIndex]}. See the images in the result tab.',
+            'Based on your answers, your preferred style is $userStyle. See the images in the result tab.',
             style: const TextStyle(fontSize: 18),
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop(); // Navigate back to the previous screen
+              },
               child: const Text('OK'),
             ),
           ],
@@ -151,46 +170,48 @@ class QuizState extends State<Quiz> {
           },
         ),
       ),
-      body: _currentQuestion < _questions.length
-          ? Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        _questions[_currentQuestion],
-                        style: const TextStyle(
-                          fontSize: 17.0,
-                          fontFamily: "Montserrat"
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: ListView.builder(
-                      itemCount: _options[_currentQuestion].length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ListTile(
-                          title: Text(
-                            _options[_currentQuestion][index],
+      body: _quizCompleted
+          ? const Center(child: Text('Quiz completed'))
+          : _currentQuestion < _questions.length
+              ? Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            _questions[_currentQuestion],
                             style: const TextStyle(
-                              fontFamily: "Montserrat",
-                              fontSize: 14
+                              fontSize: 17.0,
+                              fontFamily: "Montserrat"
                             ),
                           ),
-                          onTap: () {
-                            _selectAnswer(index);
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: ListView.builder(
+                          itemCount: _options[_currentQuestion].length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return ListTile(
+                              title: Text(
+                                _options[_currentQuestion][index],
+                                style: const TextStyle(
+                                  fontFamily: "Montserrat",
+                                  fontSize: 14
+                                ),
+                              ),
+                              onTap: () {
+                                _selectAnswer(index);
+                              },
+                            );
                           },
-                        );
-                      },
-                    ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            )
-          : Container(),
+                )
+              : Container(),
     );
   }
 }

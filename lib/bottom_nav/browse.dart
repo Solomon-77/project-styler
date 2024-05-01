@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:style_sensei/browseStyles/casual.dart';
 import 'package:style_sensei/browseStyles/formal.dart';
@@ -153,8 +154,8 @@ class CustomCard extends StatelessWidget {
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
               ),
-              child: Image.asset(
-                imagePath,
+              child: CachedNetworkImage(
+                imageUrl: imagePath,
                 fit: BoxFit.cover,
                 width: double.infinity,
               ),
