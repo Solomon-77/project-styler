@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:style_sensei/quiz.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,10 +11,9 @@ class Home extends StatefulWidget {
 
 class HomeState extends State<Home> {
   static const List<String> imageAssets = [
-    'images/trend1.jpg', // Replace with your image URLs
+    'images/trend1.jpg',
     'images/trend2.jpg',
     'images/trend3.jpg',
-    // Add more image URLs here
   ];
 
   int _currentIndex = 0;
@@ -64,7 +62,7 @@ class HomeState extends State<Home> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
                     image: DecorationImage(
-                      image: CachedNetworkImageProvider(asset),
+                      image: AssetImage(asset),
                       fit: BoxFit.cover,
                     ),
                   ),

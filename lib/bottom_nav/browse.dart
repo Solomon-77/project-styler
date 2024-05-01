@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:style_sensei/browseStyles/casual.dart';
 import 'package:style_sensei/browseStyles/formal.dart';
@@ -149,16 +148,10 @@ class CustomCard extends StatelessWidget {
         onTap: onTap,
         child: Column(
           children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
-              ),
-              child: CachedNetworkImage(
-                imageUrl: imagePath,
-                fit: BoxFit.cover,
-                width: double.infinity,
-              ),
+            Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+              width: double.infinity,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
