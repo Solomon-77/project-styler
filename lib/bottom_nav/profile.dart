@@ -71,7 +71,15 @@ class _ProfileState extends State<Profile> {
       builder: (context) {
         final controller = TextEditingController(text: _username);
         return AlertDialog(
-          title: const Text('Change Username'),
+          title: const Center(
+            child: Text(
+              'Change Username',
+              style: TextStyle(
+                fontFamily: "Montserrat",
+                fontWeight: FontWeight.w500
+              ),
+            ),
+          ),
           content: TextField(
             controller: controller,
             decoration: const InputDecoration(hintText: 'Enter new username'),
@@ -110,7 +118,7 @@ class _ProfileState extends State<Profile> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -166,18 +174,19 @@ class _ProfileState extends State<Profile> {
                                 );
                               },
                               icon: const Icon(Icons.add_a_photo),
+                              color: const Color.fromARGB(255, 92, 92, 92),
                             ),
                           )
                         ],
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 25),
                     const Text(
                       "Username",
                       style: TextStyle(
                         fontFamily: "Montserrat",
                         fontWeight: FontWeight.w800,
-                        fontSize: 13,
+                        fontSize: 14,
                       ),
                     ),
                     Row(
@@ -186,7 +195,7 @@ class _ProfileState extends State<Profile> {
                           _username,
                           style: const TextStyle(
                             fontFamily: "Montserrat",
-                            fontSize: 12,
+                            fontSize: 13,
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -206,14 +215,14 @@ class _ProfileState extends State<Profile> {
                       style: TextStyle(
                         fontFamily: "Montserrat",
                         fontWeight: FontWeight.w800,
-                        fontSize: 13,
+                        fontSize: 14,
                       ),
                     ),
                     Text(
                       _auth.currentUser?.email ?? '',
                       style: const TextStyle(
                         fontFamily: "Montserrat",
-                        fontSize: 13,
+                        fontSize: 14,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -244,7 +253,8 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                       ),
-                    )
+                    ),
+                    const SizedBox(height: 5),
                   ],
                 ),
               ),

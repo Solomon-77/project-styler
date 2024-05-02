@@ -48,7 +48,7 @@ class About extends StatelessWidget {
                       ),
                       SizedBox(height: 15),
                       Text(
-                        "The Style Sensei app is a digital application that combines the functions of a personal stylist, wardrobe organizer, and shopping assistant. Its core purpose is to assist customers with wardrobe curation, fashion trend discovery, and the creation of occasion-appropriate outfits tailored to their unique preferences and body types. This innovative app sets itself apart by allowing users to fully customize clothing pieces that they wear repeatedly, ensuring a perfect fit and alignment with their individual style.",
+                        "Style Sensei is a personalized fashion app that helps users discover and curate clothing styles matching their preferences and body types. Through a style quiz, it assesses individual tastes and fit needs. Based on quiz responses, Style Sensei recommends tailored outfits and clothing pieces. The app offers an extensive style catalog for browsing fashion looks. It provides fit guidance based on body shape, enabling users to stay fashionable and feel confident with personalized style advice.",
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                           fontFamily: "Montserrat"

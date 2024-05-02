@@ -138,7 +138,7 @@ class HomeState extends State<Home> {
                         child: const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
                           child: Text(
-                            "Ecommerce",
+                            "Shopping Guide",
                             style: TextStyle(
                               fontFamily: "Montserrat",
                               fontWeight: FontWeight.w500,

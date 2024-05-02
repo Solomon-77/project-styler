@@ -26,60 +26,60 @@ class QuizState extends State<Quiz> {
 
   static const List<List<String>> _options = [
     [
-      'Jeans and a t-shirt',
-      'Fancy pants and shirt',
-      'Flowy skirts or loose pants',
-      'High-waisted jeans or retro dress',
-      'Trousers and a nice blouse',
-      'Mix and match different styles'
+      'a. Jeans and a t-shirt',
+      'b. Nice pants and a shirt',
+      'c. Flowy skirts or loose pants',
+      'd. High-waisted jeans or a retro dress',
+      'e. Pants and a nice blouse',
+      'f. Mix and match different styles'
     ],
     [
-      'Sneakers',
-      'Loafers or oxfords',
-      'Sandals or ankle boots',
-      'Vintage-style pumps',
-      'Ballet flats or heels',
-      'Funky shoes'
+      'a. Sneakers',
+      'b. Loafers or oxfords',
+      'c. Sandals or ankle boots',
+      'd. Vintage-style shoes',
+      'e. Ballet flats or heels',
+      'f. Funky shoes'
     ],
     [
-      'Long dress or top with pants',
-      'Cocktail dress or suit',
-      'Flowy dress or skirt with blouse',
-      'Retro dress or suit',
-      'Little black dress or fitted suit',
-      'Statement dress'
+      'a. Long dress or a top with pants',
+      'b. Dressy outfit or a suit',
+      'c. Flowy dress or a skirt with a blouse',
+      'd. Retro outfit or a suit',
+      'e. Little black dress or a fitted suit',
+      'f. Standout outfit'
     ],
     [
-      'Watch and cap',
-      'Watch and cufflinks',
-      'Lots of jewelry',
-      'Vintage accessories',
-      'Simple jewelry',
-      'Bold accessories'
+      'a. Watch and a cap',
+      'b. Watch and cufflinks',
+      'c. Lots of jewelry',
+      'd. Vintage accessories',
+      'e. Simple jewelry',
+      'f. Bold accessories'
     ],
     [
-      'Leave it down or messy bun',
-      'Sleek bun or ponytail',
-      'Waves or braids',
-      'Retro curls',
-      'Smooth blowout or chignon',
-      'Funky updo'
+      'a. Leave it down or in a messy bun',
+      'b. Sleek bun or a ponytail',
+      'c. Waves or braids',
+      'd. Retro curls',
+      'e. Smooth blowout or a chignon',
+      'f. Funky updo'
     ],
     [
-      'Neutrals like black, white, gray',
-      'Earth tones like brown, green',
-      'Bright colors and prints',
-      'Pastels and floral patterns',
-      'Classic colors like navy, burgundy',
-      'Mix of different colors and patterns'
+      'a. Neutrals like black, white, and gray',
+      'b. Earth tones like brown and green',
+      'c. Bright colors and prints',
+      'd. Pastels and floral patterns',
+      'e. Classic colors like navy and burgundy',
+      'f. Mix of different colors and patterns'
     ],
     [
-      'Comfort and ease',
-      'Quality and durability',
-      'Expressing your style',
-      'Finding unique vintage pieces',
-      'Timeless and elegant',
-      'Trying new styles and trends'
+      'a. Comfort and ease',
+      'b. Quality and durability',
+      'c. Expressing your style',
+      'd. Finding unique vintage pieces',
+      'e. Timeless and elegant',
+      'f. Trying new styles and trends'
     ],
   ];
 
@@ -131,10 +131,21 @@ class QuizState extends State<Quiz> {
       barrierDismissible: false, // Prevent dismissing the dialog by tapping outside
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Your Style'),
+          title: const Center(
+            child: Text(
+              'Your Style',
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w500
+              ),
+            ),
+          ),
           content: Text(
-            'Based on your answers, your preferred style is $userStyle. See the images in the result tab.',
-            style: const TextStyle(fontSize: 18),
+            'Based on your answers, your preferred style is $userStyle. View the images in the results.',
+            style: const TextStyle(
+              fontSize: 18,
+              fontFamily: "Montserrat"
+            ),
           ),
           actions: [
             TextButton(

@@ -86,7 +86,7 @@ class Results extends StatelessWidget {
           if (snapshot.data?.docs.isEmpty ?? true) {
             return const Center(
               child: Text(
-                'No quiz result found',
+                'No result found',
                 style: TextStyle(
                   fontFamily: "Montserrat",
                   fontWeight: FontWeight.w500
