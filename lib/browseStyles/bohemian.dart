@@ -36,6 +36,9 @@ class _BohemianState extends State<Bohemian> {
   @override
   Widget build(BuildContext context) {
     final bohemianImageUrls = [
+      "https://i.ibb.co/DtxGCrK/download-3.jpg",
+      "https://i.ibb.co/nrNCBb7/Light-Beige-Festival-Top-Men-Minimalist-Men-Baggy-Top-Tribal-Tee-Tan-Handmade-Mens-Bohemian-Clothing.jpg",
+      "https://images.pexels.com/photos/10433902/pexels-photo-10433902.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "https://images.pexels.com/photos/7576576/pexels-photo-7576576.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "https://images.pexels.com/photos/19834972/pexels-photo-19834972/free-photo-of-black-woman-in-traditional-robe-posing-near-fence.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       // Add more image URLs here

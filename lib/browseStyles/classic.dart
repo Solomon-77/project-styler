@@ -36,9 +36,10 @@ class _ClassicState extends State<Classic> {
   @override
   Widget build(BuildContext context) {
     final classicImageUrls = [
+      "https://hips.hearstapps.com/hmg-prod/images/hailey-bieber-is-seen-in-brooklyn-on-june-15-2022-in-new-news-photo-1657725290.jpg",
+      "https://i.ibb.co/BsF9QFV/download-1.jpg",
       "https://images.pexels.com/photos/7538098/pexels-photo-7538098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "https://images.pexels.com/photos/3422138/pexels-photo-3422138.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "https://images.pexels.com/photos/6693215/pexels-photo-6693215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       // Add more image URLs here
     ];
 

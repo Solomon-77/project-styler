@@ -36,9 +36,10 @@ class _FormalState extends State<Formal> {
   @override
   Widget build(BuildContext context) {
     final formalImageUrls = [
-      "https://images.pexels.com/photos/8330427/pexels-photo-8330427.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "https://images.pexels.com/photos/2955376/pexels-photo-2955376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-
+      "https://i.ibb.co/3c288Tx/8ec581d03a9524ebfc2c1af9d2aea939.jpg",
+      "https://aphrodite.gmanetwork.com/imagefiles/800/1643970236_675075478_12_ent.jpg",
+      "https://i.ibb.co/s9ppQKD/10-Affordable-Online-Shops-Stylish-Women-Visit-for-Work-Outfits.jpg",
+      "https://i.ibb.co/rZp7bdk/download.jpg"
       // Add more pics here...
     ];
 

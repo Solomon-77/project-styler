@@ -36,9 +36,12 @@ class _CasualState extends State<Casual> {
   @override
   Widget build(BuildContext context) {
     final casualImageUrls = [
-      "https://images.pexels.com/photos/6311691/pexels-photo-6311691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "https://images.pexels.com/photos/15910676/pexels-photo-15910676/free-photo-of-young-woman-in-a-trendy-outfit-posing-outdoors.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "https://images.pexels.com/photos/17403707/pexels-photo-17403707/free-photo-of-young-man-in-a-trendy-outfit-posing-outdoors.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://i.ibb.co/bsGYTcr/Le-Bron-James-Stars-in-UNKNWN-s-Debut-Private-Label-Collection-Lookbook.jpg",
+      "https://i.ibb.co/6rcjxNt/Vice-Ganda.jpg",
+      "https://images.pexels.com/photos/9558777/pexels-photo-9558777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/1018911/pexels-photo-1018911.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/4066290/pexels-photo-4066290.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/4348277/pexels-photo-4348277.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       // Add more image URLs here
     ];
 
