@@ -1,6 +1,6 @@
 # Style Sensei - Flutter/Firebase Project
 
-for Gess Jarcia <> HCI Final Proj
+HCI Final Project
 
 ## Members
 
@@ -11,5 +11,4 @@ for Gess Jarcia <> HCI Final Proj
 
 ## Note
 
-- Project in progress.
 - `.apk` file in the `Releases` section.
