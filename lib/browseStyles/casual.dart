@@ -42,7 +42,6 @@ class _CasualState extends State<Casual> {
       "https://images.pexels.com/photos/1018911/pexels-photo-1018911.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "https://images.pexels.com/photos/4066290/pexels-photo-4066290.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "https://images.pexels.com/photos/4348277/pexels-photo-4348277.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      // Add more image URLs here
     ];
 
     return Scaffold(

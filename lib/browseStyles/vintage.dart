@@ -39,7 +39,6 @@ class _VintageState extends State<Vintage> {
       "https://i.ibb.co/vPkhjwT/Men-s-80s-Fashion-Style-Trends-Brands.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/10/Bundesarchiv_Bild_183-S33882%2C_Adolf_Hitler_retouched.jpg",
       "https://images.pexels.com/photos/19596272/pexels-photo-19596272/free-photo-of-young-woman-posing-near-retro-car-on-city-street.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      // Add more image URLs here
     ];
 
     return Scaffold(

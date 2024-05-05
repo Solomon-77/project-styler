@@ -40,7 +40,6 @@ class _FormalState extends State<Formal> {
       "https://aphrodite.gmanetwork.com/imagefiles/800/1643970236_675075478_12_ent.jpg",
       "https://i.ibb.co/s9ppQKD/10-Affordable-Online-Shops-Stylish-Women-Visit-for-Work-Outfits.jpg",
       "https://i.ibb.co/rZp7bdk/download.jpg"
-      // Add more pics here...
     ];
 
     return Scaffold(
