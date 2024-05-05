@@ -1,6 +1,6 @@
 # Style Sensei - Flutter/Firebase Project
 
-HCI Final Project
+HCI Final Project <> 3rd Year Second Sem
 
 ## Members
 
