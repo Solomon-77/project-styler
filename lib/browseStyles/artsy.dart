@@ -38,6 +38,7 @@ class _ArtsyState extends State<Artsy> {
     final artsyImageUrls = [
       "https://i.ibb.co/VDf9k6c/download-2.jpg",
       "https://images.pexels.com/photos/16275779/pexels-photo-16275779/free-photo-of-young-woman-posing-next-to-a-graffiti-wall.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://i.ibb.co/Tbg72cK/2.png"
     ];
 
     return Scaffold(
