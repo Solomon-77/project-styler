@@ -4,12 +4,11 @@ HCI Final Project <> 3rd Year Second Sem
 
 ## User Interface
 
-<table>
-  <tr>
-    <td><img src="images/ui/ui1.jpg" width="300"></td>
-    <td><img src="images/ui/ui2.jpg" width="300"></td>
-  </tr>
-</table>
+<p align="center">
+  <img src="images/ui/ui1.jpg" width="300">
+  <img src="images/ui/ui2.jpg" width="300">
+</p>
+
 
 ## Members
 
