@@ -5,8 +5,8 @@ HCI Final Project <> 3rd Year Second Sem
 ## User Interface
 
 <p align="center">
-  <img src="images/ui/ui1.jpg" width="300">
-  <img src="images/ui/ui2.jpg" width="300">
+  <img src="images/ui/ui1.jpg" width="250">
+  <img src="images/ui/ui2.jpg" width="250">
 </p>
 
 
