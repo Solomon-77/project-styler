@@ -4,7 +4,12 @@ HCI Final Project <> 3rd Year Second Sem
 
 ## User Interface
 
-![](images/ui/ui1.jpg) ![](images/ui/ui2.jpg)
+<table>
+  <tr>
+    <td><img src="images/ui/ui1.jpg" width="300"></td>
+    <td><img src="images/ui/ui2.jpg" width="300"></td>
+  </tr>
+</table>
 
 ## Members
 
